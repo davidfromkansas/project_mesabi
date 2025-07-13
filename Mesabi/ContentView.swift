@@ -27,7 +27,7 @@ struct ContentView: View {
                 Spacer()
                 // Move the text lower, just above the sign in button
                 VStack(spacing: 32) {
-                    Text("Access your second brain.")
+                    Text("Access your second brain")
                         .font(.custom("NunitoSans-Bold", size: 18))
                         .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.35))
                         .multilineTextAlignment(.center)
