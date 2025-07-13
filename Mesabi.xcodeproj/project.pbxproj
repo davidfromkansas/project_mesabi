@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F0CCC0D32E24167500414157 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0D22E24167500414157 /* GoogleSignIn */; };
+		F0CCC0D52E24167500414157 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0D42E24167500414157 /* GoogleSignInSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F0CCC0952E236A2D00414157 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +34,22 @@
 		F0CCC09E2E236A2D00414157 /* MesabiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MesabiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F0CCC0D72E24172600414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F0CCC07E2E236A2B00414157 /* Mesabi */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F0CCC0812E236A2B00414157 /* Mesabi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F0CCC0D72E24172600414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */,
+			);
 			path = Mesabi;
 			sourceTree = "<group>";
 		};
@@ -52,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0CCC0D32E24167500414157 /* GoogleSignIn in Frameworks */,
+				F0CCC0D52E24167500414157 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +132,8 @@
 			);
 			name = Mesabi;
 			packageProductDependencies = (
+				F0CCC0D22E24167500414157 /* GoogleSignIn */,
+				F0CCC0D42E24167500414157 /* GoogleSignInSwift */,
 			);
 			productName = Mesabi;
 			productReference = F0CCC07F2E236A2B00414157 /* Mesabi.app */;
@@ -195,6 +217,9 @@
 			);
 			mainGroup = F0CCC0762E236A2B00414157;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F0CCC0802E236A2B00414157 /* Products */;
 			projectDirPath = "";
@@ -399,6 +424,7 @@
 				DEVELOPMENT_TEAM = 8FGG5DR669;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mesabi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +454,7 @@
 				DEVELOPMENT_TEAM = 8FGG5DR669;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Mesabi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +585,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0CCC0D22E24167500414157 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		F0CCC0D42E24167500414157 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0CCC0772E236A2B00414157 /* Project object */;
 }

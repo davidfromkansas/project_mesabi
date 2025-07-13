@@ -6,82 +6,92 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct ContentView: View {
+    @State private var isSigningIn = false
+    @State private var signInError: Error?
+    @State private var isAuthenticated = false
+    @State private var userInfo: String = ""
+    
     init() {
-        // Register Nunito Sans font if needed
-        UIFont.registerFont(withFilenameString: "NunitoSans-Regular.ttf", bundle: .main)
-        UIFont.registerFont(withFilenameString: "NunitoSans-Bold.ttf", bundle: .main)
+        // Removed custom font registration to fix errors
     }
-    var body: some View {
-        ZStack {
-            Color(red: 245/255, green: 250/255, blue: 254/255)
-                .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 40) {
-                Spacer()
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 320, height: 320)
-                    .padding(.top, 40)
-                Spacer()
-                // Move the text lower, just above the sign in button
-                VStack(spacing: 32) {
-                    Text("Access your second brain")
-                        .font(.custom("NunitoSans-Bold", size: 18))
-                        .foregroundColor(Color(red: 0.35, green: 0.35, blue: 0.35))
-                        .multilineTextAlignment(.center)
-                    Button(action: {
-                        // Google Sign-In action will go here
-                    }) {
-                        HStack(spacing: 12) {
-                            Image("google_g")
-                                .resizable()
-                                .frame(width: 28, height: 28)
-                            Text("Continue with Google")
-                                .font(.system(size: 18, weight: .medium)) // Roboto Medium fallback
-                                .foregroundColor(.black)
-                        }
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                                .stroke(Color(.systemGray4), lineWidth: 2)
-                        )
-                        .cornerRadius(40)
-                    }
-                    .padding(.bottom, 60)
+    
+    func restoreSignIn() {
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if let user = user {
+                var info = ""
+                info += "Name: \(user.profile?.name ?? "N/A")\n"
+                info += "Email: \(user.profile?.email ?? "N/A")\n"
+                info += "User ID: \(user.userID ?? "N/A")\n"
+                info += "ID Token: \(user.idToken?.tokenString ?? "N/A")\n"
+                info += "Access Token: \(user.accessToken.tokenString ?? "N/A")\n"
+                if let profile = user.profile {
+                    info += "Given Name: \(profile.givenName ?? "N/A")\n"
+                    info += "Family Name: \(profile.familyName ?? "N/A")\n"
+                    info += "Has Image: \(profile.hasImage ? "Yes" : "No")\n"
                 }
-                Spacer()
+                userInfo = info
+                isAuthenticated = true
+            } else {
+                isAuthenticated = false
+                userInfo = ""
             }
         }
     }
-}
-
-// Helper to register custom fonts
-import UIKit
-extension UIFont {
-    static func registerFont(withFilenameString filenameString: String, bundle: Bundle) {
-        guard let pathForResourceString = bundle.path(forResource: filenameString, ofType: nil) else {
+    
+    func handleSignInTap() {
+        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
             return
         }
-        guard let fontData = NSData(contentsOfFile: pathForResourceString) else {
-            return
-        }
-        guard let dataProvider = CGDataProvider(data: fontData) else {
-            return
-        }
-        guard let fontRef = CGFont(dataProvider) else {
-            return
-        }
-        var errorRef: Unmanaged<CFError>? = nil
-        if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
-            // print("Failed to register font: \(filenameString)")
+        isSigningIn = true
+        signInError = nil
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { signInResult, error in
+            isSigningIn = false
+            if let error = error {
+                signInError = error
+                return
+            }
+            guard let user = signInResult?.user else {
+                return
+            }
+            var info = ""
+            info += "Name: \(user.profile?.name ?? "N/A")\n"
+            info += "Email: \(user.profile?.email ?? "N/A")\n"
+            info += "User ID: \(user.userID ?? "N/A")\n"
+            info += "ID Token: \(user.idToken?.tokenString ?? "N/A")\n"
+            info += "Access Token: \(user.accessToken.tokenString ?? "N/A")\n"
+            if let profile = user.profile {
+                info += "Given Name: \(profile.givenName ?? "N/A")\n"
+                info += "Family Name: \(profile.familyName ?? "N/A")\n"
+                info += "Has Image: \(profile.hasImage ? "Yes" : "No")\n"
+            }
+            userInfo = info
+            isAuthenticated = true
         }
     }
-}
-
-#Preview {
-    ContentView()
+    
+    func handleSignOut() {
+        GIDSignIn.sharedInstance.signOut()
+        isAuthenticated = false
+        userInfo = ""
+    }
+    
+    var body: some View {
+        Group {
+            if isAuthenticated {
+                AuthenticatedView(userInfo: userInfo, onSignOut: handleSignOut)
+                    .onAppear(perform: restoreSignIn)
+            } else {
+                LoginView(
+                    isSigningIn: $isSigningIn,
+                    signInError: $signInError,
+                    onSignInTap: handleSignInTap
+                )
+                .onAppear(perform: restoreSignIn)
+            }
+        }
+    }
 }

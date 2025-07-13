@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 @main
 struct MesabiApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
+
+    // Removed manual GoogleSignIn configuration
 
     var body: some Scene {
         WindowGroup {
