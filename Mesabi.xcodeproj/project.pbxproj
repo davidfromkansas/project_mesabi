@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		F0CCC0D32E24167500414157 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0D22E24167500414157 /* GoogleSignIn */; };
 		F0CCC0D52E24167500414157 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0D42E24167500414157 /* GoogleSignInSwift */; };
+		F0CCC0E62E2456B500414157 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0E52E2456B500414157 /* FirebaseAI */; };
+		F0CCC0E82E2456B500414157 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0E72E2456B500414157 /* FirebaseAnalytics */; };
+		F0CCC0EA2E2456B500414157 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0E92E2456B500414157 /* FirebaseAnalyticsCore */; };
+		F0CCC0EC2E2456B500414157 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0EB2E2456B500414157 /* FirebaseAnalyticsIdentitySupport */; };
+		F0CCC0EE2E2456B500414157 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0ED2E2456B500414157 /* FirebaseAnalyticsOnDeviceConversion */; };
+		F0CCC0F12E2456FA00414157 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0F02E2456FA00414157 /* FirebaseFirestore */; };
+		F0CCC0F32E24570600414157 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0F22E24570600414157 /* FirebaseAuth */; };
+		F0CCC0F52E24570C00414157 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = F0CCC0F42E24570C00414157 /* FirebaseCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +43,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F0CCC0D72E24172600414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */ = {
+		F0CCC1042E2470A400414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -48,7 +56,7 @@
 		F0CCC0812E236A2B00414157 /* Mesabi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				F0CCC0D72E24172600414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */,
+				F0CCC1042E2470A400414157 /* Exceptions for "Mesabi" folder in "Mesabi" target */,
 			);
 			path = Mesabi;
 			sourceTree = "<group>";
@@ -72,6 +80,14 @@
 			files = (
 				F0CCC0D32E24167500414157 /* GoogleSignIn in Frameworks */,
 				F0CCC0D52E24167500414157 /* GoogleSignInSwift in Frameworks */,
+				F0CCC0EC2E2456B500414157 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
+				F0CCC0EE2E2456B500414157 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				F0CCC0F32E24570600414157 /* FirebaseAuth in Frameworks */,
+				F0CCC0EA2E2456B500414157 /* FirebaseAnalyticsCore in Frameworks */,
+				F0CCC0F52E24570C00414157 /* FirebaseCore in Frameworks */,
+				F0CCC0F12E2456FA00414157 /* FirebaseFirestore in Frameworks */,
+				F0CCC0E82E2456B500414157 /* FirebaseAnalytics in Frameworks */,
+				F0CCC0E62E2456B500414157 /* FirebaseAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +114,7 @@
 				F0CCC0812E236A2B00414157 /* Mesabi */,
 				F0CCC0972E236A2D00414157 /* MesabiTests */,
 				F0CCC0A12E236A2D00414157 /* MesabiUITests */,
+				F0CCC0EF2E2456FA00414157 /* Frameworks */,
 				F0CCC0802E236A2B00414157 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +127,13 @@
 				F0CCC09E2E236A2D00414157 /* MesabiUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F0CCC0EF2E2456FA00414157 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +158,14 @@
 			packageProductDependencies = (
 				F0CCC0D22E24167500414157 /* GoogleSignIn */,
 				F0CCC0D42E24167500414157 /* GoogleSignInSwift */,
+				F0CCC0E52E2456B500414157 /* FirebaseAI */,
+				F0CCC0E72E2456B500414157 /* FirebaseAnalytics */,
+				F0CCC0E92E2456B500414157 /* FirebaseAnalyticsCore */,
+				F0CCC0EB2E2456B500414157 /* FirebaseAnalyticsIdentitySupport */,
+				F0CCC0ED2E2456B500414157 /* FirebaseAnalyticsOnDeviceConversion */,
+				F0CCC0F02E2456FA00414157 /* FirebaseFirestore */,
+				F0CCC0F22E24570600414157 /* FirebaseAuth */,
+				F0CCC0F42E24570C00414157 /* FirebaseCore */,
 			);
 			productName = Mesabi;
 			productReference = F0CCC07F2E236A2B00414157 /* Mesabi.app */;
@@ -219,6 +251,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F0CCC0802E236A2B00414157 /* Products */;
@@ -595,6 +628,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.15.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -607,6 +648,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0CCC0D12E24167500414157 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		F0CCC0E52E2456B500414157 /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		F0CCC0E72E2456B500414157 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F0CCC0E92E2456B500414157 /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		F0CCC0EB2E2456B500414157 /* FirebaseAnalyticsIdentitySupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsIdentitySupport;
+		};
+		F0CCC0ED2E2456B500414157 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		F0CCC0F02E2456FA00414157 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F0CCC0F22E24570600414157 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F0CCC0F42E24570C00414157 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0CCC0E42E2456B500414157 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

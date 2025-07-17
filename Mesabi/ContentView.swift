@@ -8,6 +8,7 @@
 import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
+import FirebaseAuth
 
 struct ContentView: View {
     @State private var isSigningIn = false
@@ -27,7 +28,7 @@ struct ContentView: View {
                 info += "Email: \(user.profile?.email ?? "N/A")\n"
                 info += "User ID: \(user.userID ?? "N/A")\n"
                 info += "ID Token: \(user.idToken?.tokenString ?? "N/A")\n"
-                info += "Access Token: \(user.accessToken.tokenString ?? "N/A")\n"
+                info += "Access Token: \(user.accessToken.tokenString)\n"
                 if let profile = user.profile {
                     info += "Given Name: \(profile.givenName ?? "N/A")\n"
                     info += "Family Name: \(profile.familyName ?? "N/A")\n"
@@ -57,19 +58,41 @@ struct ContentView: View {
             guard let user = signInResult?.user else {
                 return
             }
-            var info = ""
-            info += "Name: \(user.profile?.name ?? "N/A")\n"
-            info += "Email: \(user.profile?.email ?? "N/A")\n"
-            info += "User ID: \(user.userID ?? "N/A")\n"
-            info += "ID Token: \(user.idToken?.tokenString ?? "N/A")\n"
-            info += "Access Token: \(user.accessToken.tokenString ?? "N/A")\n"
-            if let profile = user.profile {
-                info += "Given Name: \(profile.givenName ?? "N/A")\n"
-                info += "Family Name: \(profile.familyName ?? "N/A")\n"
-                info += "Has Image: \(profile.hasImage ? "Yes" : "No")\n"
+            guard let idToken = user.idToken?.tokenString else {
+                print("Missing Google ID token")
+                return
             }
-            userInfo = info
-            isAuthenticated = true
+            let accessToken = user.accessToken.tokenString
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    print("Firebase Auth sign-in error: \(error)")
+                    signInError = error
+                    return
+                }
+                // Now you are signed in to Firebase Auth!
+                guard let userId = Auth.auth().currentUser?.uid else {
+                    print("No Firebase Auth UID")
+                    return
+                }
+                let name = user.profile?.name ?? ""
+                let email = user.profile?.email ?? ""
+                UserService.createUserProfileIfNeeded(userId: userId, name: name, email: email)
+                var info = ""
+                info += "Name: \(user.profile?.name ?? "N/A")\n"
+                info += "Email: \(user.profile?.email ?? "N/A")\n"
+                info += "User ID: \(userId)\n"
+                info += "ID Token: \(user.idToken?.tokenString ?? "N/A")\n"
+                info += "Access Token: \(user.accessToken.tokenString)\n"
+                if let profile = user.profile {
+                    info += "Given Name: \(profile.givenName ?? "N/A")\n"
+                    info += "Family Name: \(profile.familyName ?? "N/A")\n"
+                    info += "Has Image: \(profile.hasImage ? "Yes" : "No")\n"
+                }
+                userInfo = info
+                isAuthenticated = true
+            }
+            return
         }
     }
     
